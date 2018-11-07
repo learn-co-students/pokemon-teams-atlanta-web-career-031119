@@ -35,13 +35,14 @@ A Pokemon Card can be placed within the `<main>` tags.
 ```
 
 ## API
-We are going to be using a Rails backend to support our requests. In order to have this working, you want to make sure you
+We are going to be using a Rails backend to support our requests. In order to have this working, 
+you want to make sure you go to your Terminal and run the following code below:
 
-$ cd pokemon-teams-backend # Change into the directory
-$ bundle install           # Install the appropriate dependencies/gems
-$ rails db:migrate         # Migrate the database
-$ rails db:seed            # Seed the database
-$ rails server             # Start the server
+    $ cd pokemon-teams-backend # Change into the directory
+    $ bundle install           # Install the appropriate dependencies/gems
+    $ rails db:migrate         # Migrate the database
+    $ rails db:seed            # Seed the database
+    $ rails server             # Start the server
 
 You will want to make sure this is running in a terminal. When you're making requests you will
 make it to `http://localhost:3000` as the base url. The documentation below should show you how
