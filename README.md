@@ -90,7 +90,7 @@ Required Headers:
 
 Required Body:
 {
-  trainer_id: 1
+  "trainer_id": 1
 }
 
 #=> Example Response
