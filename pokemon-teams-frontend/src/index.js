@@ -13,7 +13,6 @@ function fetchAllTrainers() {
 }
 
 function addTeam(team) {
-    // console.log(team)
     let div = document.createElement("div")
     div.className = 'card'
     div.dataset.id = team.id
@@ -25,33 +24,34 @@ function addTeam(team) {
     addBtn.innerText = "Add Pokemon"
     addBtn.dataset.id = team.id
     addBtn.addEventListener("click", addPokemon)
-    
-    // console.log(team.name)
 
     let ul = document.createElement("ul")
     
     for (pokemon of team.pokemons){
-        let li = document.createElement("li")
-        li.innerText = `${pokemon.nickname} (${pokemon.species})`
-        li.dataset.id = pokemon.nickname
-        let remBtn = document.createElement("button")
-        remBtn.innerText = "Remove"
-        remBtn.className = "release"
-        remBtn.dataset.id = pokemon.id
-        remBtn.addEventListener("click", removePokemon)
-        li.appendChild(remBtn)
+        let li = createListItem(pokemon)
         ul.appendChild(li)
     }
 
     div.appendChild(p)
     div.appendChild(addBtn)
-    // console.log(div)
     div.appendChild(ul)
     document.querySelector("main").appendChild(div)
 }
 
+function createListItem(pokemon){
+    let li = document.createElement("li")
+    li.innerText = `${pokemon.nickname} (${pokemon.species})`
+    li.dataset.id = pokemon.nickname
+    let remBtn = document.createElement("button")
+    remBtn.innerText = "Remove"
+    remBtn.className = "release"
+    remBtn.dataset.id = pokemon.id
+    remBtn.addEventListener("click", removePokemon)
+    li.appendChild(remBtn)
+    return li
+}
+
 function addPokemon(e){
-    // console.log(e.target.dataset.id)
     fetch("http://localhost:3000/pokemons",{
         headers:{
           "Content-Type": "application/json"
@@ -65,37 +65,16 @@ function addPokemon(e){
 }
 
 function addNewPokemon(pokemon, e){
-    // console.log(e.target.dataset.id)
-    let divs = document.querySelectorAll("div")
-    // console.log(divs)
-    let newDiv;
-    for (divi of divs){
-        if (divi.dataset.id == e.target.dataset.id){
-            // console.log(divi)
-            newDiv = divi
-        }
-    }
-    newUl = newDiv.querySelector("ul")
+    let div = e.target.parentElement
+    newUl = div.querySelector("ul")
     if (newUl.childElementCount < 6){
-        console.log(newDiv)
-        let li = document.createElement("li")
-        li.innerText = `${pokemon.nickname} (${pokemon.species})`
-        li.dataset.id = pokemon.nickname
-        let remBtn = document.createElement("button")
-        remBtn.innerText = "Remove"
-        remBtn.className = "release"
-        remBtn.dataset.id = pokemon.id
-        remBtn.addEventListener("click", removePokemon)
-        li.appendChild(remBtn)
-
-        console.log(newUl)
+        let li = createListItem(pokemon)
         newUl.appendChild(li)
     }
-
+    div.appendChild(newUl)
 }
 
 function removePokemon(e){
-    // console.log(e.target.dataset.id)
     e.target.parentElement.remove()
     fetch(`http://localhost:3000/pokemons/${e.target.dataset.id}`,{
         method: 'DELETE'
