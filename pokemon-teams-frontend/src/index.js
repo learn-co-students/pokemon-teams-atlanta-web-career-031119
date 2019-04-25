@@ -66,12 +66,12 @@ function addPokemon(e){
 
 function addNewPokemon(pokemon, e){
     let div = e.target.parentElement
-    newUl = div.querySelector("ul")
-    if (newUl.childElementCount < 6){
+    ul = div.querySelector("ul")
+    if (ul.childElementCount < 6){
         let li = createListItem(pokemon)
-        newUl.appendChild(li)
+        ul.appendChild(li)
     }
-    div.appendChild(newUl)
+    div.appendChild(ul)
 }
 
 function removePokemon(e){
