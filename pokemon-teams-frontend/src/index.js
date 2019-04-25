@@ -17,6 +17,9 @@ function addTeam(team) {
     let div = document.createElement("div")
     div.className = 'card'
     let p = document.createElement("p")
+    let addBtn = document.createElement("button")
+    addBtn.innerText = "Add Pokemon"
+    
     // console.log(team.name)
     p.innerText = team.name
     div.dataset.id = team.name
@@ -25,9 +28,16 @@ function addTeam(team) {
     for (pokemon of team.pokemons){
         let li = document.createElement("li")
         li.innerText = `${pokemon.nickname} (${pokemon.species})`
+        li.dataset.id = pokemon.nickname
+        let remBtn = document.createElement("button")
+        remBtn.innerText = "Remove"
+        remBtn.className = "release"
+        remBtn.dataset.id = pokemon.nickname
+        li.appendChild(remBtn)
         ul.appendChild(li)
     }
     div.appendChild(p)
+    div.appendChild(addBtn)
     // console.log(div)
     div.appendChild(ul)
     document.querySelector("main").appendChild(div)
