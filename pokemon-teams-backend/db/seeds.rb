@@ -34,7 +34,7 @@ trainer_collection.each do |trainer|
 
   (1..team_size).each do |poke|
     name = Faker::Name.first_name
-    species = Faker::Pokemon.name
+    species = Faker::Games::Pokemon.name
     Pokemon.create(nickname: name, species: species, trainer_id: trainer.id)
   end
 end
